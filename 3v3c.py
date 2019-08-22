@@ -6,16 +6,15 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # number of qubits
-N = 12
+N = 9
 M = 50
 # vertex numbr
-# S E W N stands for countries of UK
-V = 4
+V = 3
 # colour number
 C = 3
 
 # edges matrix
-E = [[0, 1, 0, 1], [1, 0, 1, 1], [0, 1, 0, 1], [1, 1, 1, 0]]
+E = [[0, 1, 1], [1, 0, 1], [1, 1, 0]]
 E = np.array(E)
 
 
@@ -128,8 +127,8 @@ spin = 0
 
 for config in range(6):
     print("configuration " + repr(config + 1) + ' ', end='')
-    for num in range(12):
-        spin = ekets_mat[config].ptrace(num)
+    for num in range(9):
+        spin = ekets_mat[len(taulist) - 1][config].ptrace(num)
         if spin == basis(2, 0).proj():
             print(0, end='')
         elif spin == basis(2, 1).proj():
@@ -151,4 +150,4 @@ for n in range(len(evals_mat[0, :])):
 plt.xlabel(r'$\tau$')
 plt.ylabel('Eigenenergies')
 plt.title("Energyspectrum (%d lowest values) of %d spins.\n " % (M, N))
-plt.savefig("4sv3c")
+plt.savefig("3v3c")
